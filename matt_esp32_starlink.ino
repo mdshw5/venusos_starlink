@@ -118,8 +118,8 @@ void setup() {
 void loop() {
   //if the connection to the stongest hotstop is lost, it will connect to the next network on the list
   while (wifiMulti.run(connectTimeoutMs) != WL_CONNECTED) {
-        Serial.println("WiFi not connected!");
-        delay(1000);
+        Serial.println("WiFi not connected: try again in 5 seconds");
+        delay(5000);
   }
   if (!client.connected()) {
     reconnect();
