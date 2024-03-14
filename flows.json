@@ -1,0 +1,186 @@
+[
+    {
+        "id": "99a8eb3b372030c0",
+        "type": "tab",
+        "label": "Starlink Control",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "314c71f601cddf12",
+        "type": "mqtt out",
+        "z": "99a8eb3b372030c0",
+        "name": "Starlink Power",
+        "topic": "starlink/powerstate",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "c01b74f9b4b6f297",
+        "x": 960,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "23bacacf0218c826",
+        "type": "mqtt in",
+        "z": "99a8eb3b372030c0",
+        "name": "Starlink Power",
+        "topic": "starlink/powerstate",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "c01b74f9b4b6f297",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 400,
+        "y": 100,
+        "wires": [
+            [
+                "df382f8e8846a740"
+            ]
+        ]
+    },
+    {
+        "id": "ed8dc097c0bf4505",
+        "type": "victron-output-relay",
+        "z": "99a8eb3b372030c0",
+        "service": "com.victronenergy.system/0",
+        "path": "/Relay/2/State",
+        "serviceObj": {
+            "service": "com.victronenergy.system/0",
+            "name": "Venus device"
+        },
+        "pathObj": {
+            "path": "/Relay/2/State",
+            "type": "enum",
+            "name": "Venus relay 3 state",
+            "enum": {
+                "0": "Open",
+                "1": "Closed"
+            },
+            "writable": true
+        },
+        "name": "",
+        "onlyChanges": false,
+        "x": 840,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "4589231345ccffe7",
+        "type": "victron-input-relay",
+        "z": "99a8eb3b372030c0",
+        "service": "com.victronenergy.system/0",
+        "path": "/Relay/2/State",
+        "serviceObj": {
+            "service": "com.victronenergy.system/0",
+            "name": "Venus system"
+        },
+        "pathObj": {
+            "path": "/Relay/2/State",
+            "type": "enum",
+            "name": "Venus relay 3 state",
+            "enum": {
+                "0": "Open",
+                "1": "Closed"
+            }
+        },
+        "initial": "",
+        "name": "",
+        "onlyChanges": true,
+        "x": 520,
+        "y": 200,
+        "wires": [
+            [
+                "9c259a78316cf352"
+            ]
+        ]
+    },
+    {
+        "id": "df382f8e8846a740",
+        "type": "delay",
+        "z": "99a8eb3b372030c0",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "100",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "5",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 590,
+        "y": 100,
+        "wires": [
+            [
+                "ed8dc097c0bf4505"
+            ]
+        ]
+    },
+    {
+        "id": "9c259a78316cf352",
+        "type": "delay",
+        "z": "99a8eb3b372030c0",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "100",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "5",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 770,
+        "y": 200,
+        "wires": [
+            [
+                "314c71f601cddf12"
+            ]
+        ]
+    },
+    {
+        "id": "c01b74f9b4b6f297",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]
